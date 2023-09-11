@@ -1,16 +1,29 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
-};
+import React, { Component } from "react";
+
+import { SectionFeedBack } from './SectionFeedback/SectionFeedBack'
+
+export class App extends Component {
+
+  // old school variant
+  // constructor(){
+  //     super();
+  //     this.state = {
+  //         good: 0,
+  //         neutral: 0,
+  //         bad: 0
+  //     };
+  // }
+
+  // with 'babel'
+  state = {
+      good: 0,
+      neutral: 0,
+      bad: 0,
+  }
+
+  render(){
+    return (
+      <SectionFeedBack title="" data={this.state}/>
+    )
+  }
+}
