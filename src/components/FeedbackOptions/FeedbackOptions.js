@@ -1,33 +1,42 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+
+import opt from '../FeedbackOptions/FeedbackOptions.module.css';
 
 export class FeedbackOptions extends Component {
 
-    state = this.props.options;
+  // change 'Statistics' to 'FeedbackOptions' method
+  openState = (data = false) => (data ? this.props.onLeaveFeedback() : 'none');
 
-    // handler method by button 'Good'
-    goodButtonClick = () => this.setState(value => ({good: value.good + 1,}));
+  // handler method by button 'Good'
+  goodButtonClick = () => {
+   
+    this.props.options('good');
+    this.openState(true);
+  };
 
-    // handler method by button 'Neutral'
-    neutralButtonClick = () => this.setState(value => ({neutral: value.neutral + 1,}));
+  // handler method by button 'Neutral'
+  neutralButtonClick = () => {
+    
+    this.props.options('neutral');
+    this.openState(true);
+  };
 
-    // handler method by button 'Bad'
-    badButtonClick = () => this.setState(value => ({bad: value.bad + 1,}));
+  // handler method by button 'Bad'
+  badButtonClick = () => {
+    
+    this.props.options('bad');
+    this.openState(true);
+  };
 
-    render() {
-        
-        const { good, neutral, bad } =  this.state;
-      
-        return (
-            
-            <>
-                {
-                    good || neutral || bad ? this.props.onLeaveFeedback(): this.props.onLeaveFeedback()
-                }
-                <button onClick={this.goodButtonClick}>Good</button>
-                <button onClick={this.neutralButtonClick}>Neutral</button>
-                <button onClick={this.badButtonClick}>Bad</button>
-
-            </>
-        )  
-    }
+  render() {
+    return (
+      <>
+        <div className={opt.buttonArea}>
+            <button className={opt.button} onClick={this.goodButtonClick}>Good</button>
+            <button className={opt.button} onClick={this.neutralButtonClick}>Neutral</button>
+            <button className={opt.button} onClick={this.badButtonClick}>Bad</button>
+        </div>
+      </>
+    );
+  }
 }
