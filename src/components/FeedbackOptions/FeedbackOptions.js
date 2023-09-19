@@ -7,34 +7,22 @@ export class FeedbackOptions extends Component {
   // change 'Statistics' to 'FeedbackOptions' method
   openState = (data = false) => (data ? this.props.onLeaveFeedback() : 'none');
 
-  // handler method by button 'Good'
-  goodButtonClick = () => {
-   
-    this.props.options('good');
+  buttonClick = (evt) => {
+    this.props.options(evt.target.name);
     this.openState(true);
-  };
-
-  // handler method by button 'Neutral'
-  neutralButtonClick = () => {
-    
-    this.props.options('neutral');
-    this.openState(true);
-  };
-
-  // handler method by button 'Bad'
-  badButtonClick = () => {
-    
-    this.props.options('bad');
-    this.openState(true);
-  };
+  }
 
   render() {
+  
+    const opts = Object.keys(this.props.optionsName) ;
+ 
     return (
       <>
         <div className={opt.buttonArea}>
-            <button className={opt.button} onClick={this.goodButtonClick}>Good</button>
-            <button className={opt.button} onClick={this.neutralButtonClick}>Neutral</button>
-            <button className={opt.button} onClick={this.badButtonClick}>Bad</button>
+          
+           { opts.map(value =>{ 
+              return <button type="button" className={opt.button} onClick={this.buttonClick} name={value} key={value}>{value}</button>})}
+            
         </div>
       </>
     );

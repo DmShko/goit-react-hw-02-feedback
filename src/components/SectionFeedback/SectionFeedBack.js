@@ -38,6 +38,7 @@ export class SectionFeedBack extends Component {
         <FeedbackOptions 
           options={this.props.linkState}
           onLeaveFeedback={this.onStatistic}
+          optionsName={this.props.dataState}
         />
 
         <p className={scn.title}>Statistics</p>
